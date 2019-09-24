@@ -1,5 +1,5 @@
 {
-    "name": "dmitry-udod/php-insight",
+    "name": "dmitry-udod/php-sentiment",
     "type": "library",
     "description": "Sentiment analysis tool for PHP",
     "keywords": [
@@ -8,8 +8,8 @@
         "Sentiment analysis",
         "php"
     ],
-    "homepage": "https://github.com/dmitry-udod/php-insight",
-    "license": "GPLv3 or later",
+    "homepage": "https://github.com/dmitry-udod/php-sentiment",
+    "license": "MIT",
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.0"

@@ -1,9 +1,9 @@
-php-insight - Sentiment Analysis in PHP
+php-sentiment - Sentiment Analysis in PHP
 ---------
 
 ### Installation
 ```bash
-composer require dmitry-udod/php-insight
+composer require dmitry-udod/php-sentiment
 ```
 
 ### Usage
@@ -35,4 +35,10 @@ composer generate-dictionaries
 ```
 
 ### Tests
-Install and run phpunit in project dir
+```bash
+composer install
+phpunit
+```
+
+### Source
+Forked from https://github.com/JWHennessey/phpInsight 
