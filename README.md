@@ -19,6 +19,7 @@ $scores = $analyzer->score($string);
 #    [neg] => 0.865
 #    [neu] => 0.108
 #    [pos] => 0.027
+#    [neg_word] => ['horrible', 'boring', 'expensive']
 #)
 ```
 

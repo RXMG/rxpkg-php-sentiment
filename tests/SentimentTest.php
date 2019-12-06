@@ -48,4 +48,17 @@ class SentimentTest extends TestCase
             $this->assertEquals($this->results[$index]['pos'], $scores['pos']);
         }
     }
+
+    /** @test */
+    public function analyze_sentiment_negative_words()
+    {
+        $analyzer = new Sentiment();
+        $result = $analyzer->score($this->strings[7]);
+        $this->assertNotEmpty($result['neg_words']);
+        $this->assertCount(1, $result['neg_words']);
+
+        $result = $analyzer->score($this->strings[11]);
+        $this->assertNotEmpty($result['neg_words']);
+        $this->assertCount(6, $result['neg_words']);
+    }
 }

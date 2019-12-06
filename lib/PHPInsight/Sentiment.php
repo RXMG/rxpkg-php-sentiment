@@ -4,6 +4,10 @@ namespace PHPInsight;
 
 class Sentiment
 {
+    private const SENTIMENT_NEGATIVE = 'neg';
+    private const SENTIMENT_NEUTRAL = 'neu';
+    private const SENTIMENT_POSITIVE = 'pos';
+
     /**
      * Location of the dictionary files
      * @var string
@@ -44,26 +48,26 @@ class Sentiment
      * Classification of opinions
      * @var array
      */
-    private $classes = array('pos', 'neg', 'neu');
+    private $classes = [self::SENTIMENT_POSITIVE, self::SENTIMENT_NEGATIVE, self::SENTIMENT_NEUTRAL];
 
     /**
      * Token score per class
      * @var array
      */
-    private $classTokCounts = array(
-        'pos' => 0,
-        'neg' => 0,
-        'neu' => 0
-    );
+    private $classTokCounts = [
+        self::SENTIMENT_POSITIVE => 0,
+        self::SENTIMENT_NEGATIVE => 0,
+        self::SENTIMENT_NEUTRAL => 0,
+    ];
 
     /**
      * Analyzed text score per class
      * @var array
      */
     private $classDocCounts = array(
-        'pos' => 0,
-        'neg' => 0,
-        'neu' => 0
+        self::SENTIMENT_POSITIVE => 0,
+        self::SENTIMENT_NEGATIVE => 0,
+        self::SENTIMENT_NEUTRAL => 0,
     );
 
     /**
@@ -83,9 +87,9 @@ class Sentiment
      * @var array
      */
     private $prior = array(
-        'pos' => 0.333,
-        'neg' => 0.333,
-        'neu' => 0.334,
+        self::SENTIMENT_POSITIVE => 0.333,
+        self::SENTIMENT_NEGATIVE => 0.333,
+        self::SENTIMENT_NEUTRAL => 0.334,
     );
 
     /**
@@ -127,6 +131,7 @@ class Sentiment
 
         //Empty array for the scores for each of the possible categories
         $scores = [];
+        $words = [];
 
         //Loop through all of the different classes set in the $classes variable
         foreach ($this->classes as $class) {
@@ -143,6 +148,10 @@ class Sentiment
                     if (isset($this->dictionary[$token][$class])) {
                         //Set count equal to it
                         $count = $this->dictionary[$token][$class];
+
+                       if ($count && $class === self::SENTIMENT_NEGATIVE) {
+                           $words[] = $token;
+                       }
                     } else {
                         $count = 0;
                     }
@@ -165,8 +174,11 @@ class Sentiment
             $scores[$class] = round($scores[$class] / $totalScore, 3);
         }
 
-        //Sort array in reverse order
         arsort($scores);
+
+        if ((key($scores) === self::SENTIMENT_NEGATIVE)) {
+            $scores['neg_words'] = array_unique($words);
+        }
 
         return $scores;
     }
