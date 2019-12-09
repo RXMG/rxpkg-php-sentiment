@@ -2154,7 +2154,6 @@ $neg = array(
   "impunity",
   "impure",
   "impurity",
-  "in",
   "inability",
   "inaccessible",
   "inaccuracies",

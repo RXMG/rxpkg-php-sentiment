@@ -36,7 +36,7 @@ class Sentiment
      * Min length of a token for it to be taken into consideration
      * @var int
      */
-    private $minTokenLength = 1;
+    private $minTokenLength = 2;
 
     /**
      * Max length of a taken for it be taken into consideration
