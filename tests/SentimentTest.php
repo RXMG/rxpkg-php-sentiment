@@ -29,7 +29,7 @@ class SentimentTest extends TestCase
         ['category' => 'pos', 'pos' => 0.571, 'neu' => 0.286, 'neg' => 0.143,],
         ['category' => 'neu', 'neu' => 0.334, 'pos' => 0.333, 'neg' => 0.333,],
         ['category' => 'neg', 'neg' => 0.5, 'neu' => 0.251, 'pos' => 0.25,],
-        ['category' => 'pos', 'pos' => 0.877, 'neg' => 0.11, 'neu' => 0.014,],
+        ['category' => 'pos', 'pos' => 0.97, 'neg' => 0.015, 'neu' => 0.015,],
         ['category' => 'pos', 'pos' => 0.727, 'neg' => 0.182, 'neu' => 0.091,],
         ['category' => 'neg', 'neg' => 0.992, 'pos' => 0.008, 'neu' => 0,],
         ['category' => 'neg', 'neg' => 0.865, 'neu' => 0.108, 'pos' => 0.027,],
@@ -60,5 +60,18 @@ class SentimentTest extends TestCase
         $result = $analyzer->score($this->strings[11]);
         $this->assertNotEmpty($result['neg_words']);
         $this->assertCount(6, $result['neg_words']);
+    }
+
+    /** @test */
+    public function analyze_sentiment_positive_words()
+    {
+        $analyzer = new Sentiment();
+        $result = $analyzer->score($this->strings[1]);
+        $this->assertNotEmpty($result['pos_words']);
+        $this->assertCount(1, $result['pos_words']);
+
+        $result = $analyzer->score($this->strings[3]);
+        $this->assertNotEmpty($result['pos_words']);
+        $this->assertCount(1, $result['pos_words']);
     }
 }

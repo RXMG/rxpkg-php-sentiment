@@ -131,7 +131,7 @@ class Sentiment
 
         //Empty array for the scores for each of the possible categories
         $scores = [];
-        $words = [];
+        $positiveWords = $negativeWords = [];
 
         //Loop through all of the different classes set in the $classes variable
         foreach ($this->classes as $class) {
@@ -149,9 +149,13 @@ class Sentiment
                         //Set count equal to it
                         $count = $this->dictionary[$token][$class];
 
-                       if ($count && $class === self::SENTIMENT_NEGATIVE) {
-                           $words[] = $token;
-                       }
+                        if ($count && $class === self::SENTIMENT_NEGATIVE) {
+                            $negativeWords[] = $token;
+                        }
+
+                        if ($count && $class === self::SENTIMENT_POSITIVE) {
+                            $positiveWords[] = $token;
+                        }
                     } else {
                         $count = 0;
                     }
@@ -177,7 +181,10 @@ class Sentiment
         arsort($scores);
 
         if ((key($scores) === self::SENTIMENT_NEGATIVE)) {
-            $scores['neg_words'] = array_unique($words);
+            $scores['neg_words'] = array_unique($negativeWords);
+        }
+        if ((key($scores) === self::SENTIMENT_POSITIVE)) {
+            $scores['pos_words'] = array_unique($positiveWords);
         }
 
         return $scores;
