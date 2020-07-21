@@ -1,5 +1,5 @@
 {
-    "name": "dmitry-udod/php-sentiment",
+    "name": "rxmg/php-sentiment",
     "type": "library",
     "description": "Sentiment analysis tool for PHP",
     "keywords": [
@@ -8,7 +8,7 @@
         "Sentiment analysis",
         "php"
     ],
-    "homepage": "https://github.com/dmitry-udod/php-sentiment",
+    "homepage": "https://github.com/rxmg/rxpkg-php-sentiment",
     "license": "MIT",
     "minimum-stability": "dev",
     "require": {
