@@ -3,7 +3,7 @@ php-sentiment - Sentiment Analysis in PHP
 
 ### Installation
 ```bash
-composer require dmitry-udod/php-sentiment
+composer require rxmg/php-sentiment
 ```
 
 ### Usage
