@@ -28,7 +28,7 @@ class SentimentTest extends TestCase
         ['category' => 'neu', 'neu' => 0.501, 'pos' => 0.25, 'neg' => 0.25,],
         ['category' => 'pos', 'pos' => 0.571, 'neu' => 0.286, 'neg' => 0.143,],
         ['category' => 'neu', 'neu' => 0.334, 'pos' => 0.333, 'neg' => 0.333,],
-        ['category' => 'neg', 'neg' => 0.5, 'neu' => 0.251, 'pos' => 0.25,],
+        ['category' => 'neg', 'neg' => 0.5, 'neu' => 0, 'pos' => 0,],
         ['category' => 'pos', 'pos' => 0.97, 'neg' => 0.015, 'neu' => 0.015,],
         ['category' => 'pos', 'pos' => 0.727, 'neg' => 0.182, 'neu' => 0.091,],
         ['category' => 'neg', 'neg' => 0.992, 'pos' => 0.008, 'neu' => 0,],
@@ -40,7 +40,7 @@ class SentimentTest extends TestCase
     {
         $analyzer = new Sentiment();
         foreach ($this->strings as $index => $string) {
-            echo "\nTest Row #$index";
+//            echo "\nTest Row #$index";
             $scores = $analyzer->score($string);
             $this->assertEquals($this->results[$index]['category'], $analyzer->categorise($string));
             $this->assertEquals($this->results[$index]['neg'], $scores['neg']);
