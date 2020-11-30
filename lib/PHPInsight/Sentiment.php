@@ -190,9 +190,9 @@ class Sentiment
             $scores['pos'] = 0;
         }
 
-//        if ((key($scores) === self::SENTIMENT_NEGATIVE)) {
+        if ((key($scores) === self::SENTIMENT_NEGATIVE)) {
             $scores['neg_words'] = array_unique($negativeWords);
-//        }
+        }
         if ((key($scores) === self::SENTIMENT_POSITIVE)) {
             $scores['pos_words'] = array_unique($positiveWords);
         }
