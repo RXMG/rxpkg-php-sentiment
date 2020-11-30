@@ -1,6 +1,6 @@
 <?php
-$prefix = array(
+$prefix = [
   'aren\'t',
   'isn\'t',
-  'not'
-);
+  'not',
+];

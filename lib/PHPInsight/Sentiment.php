@@ -122,6 +122,7 @@ class Sentiment
                 $sentence = str_replace($negPrefix . ' ', $negPrefix, $sentence);
             }
         }
+        $sentence = str_replace("\t", ' ', $sentence);
 
         //Tokenize Document
         $tokens = $this->getTokens($sentence);
@@ -179,6 +180,15 @@ class Sentiment
         }
 
         arsort($scores);
+
+        // We check specific words that we make sure we want to unsubscribe users.
+        if (count(array_intersect(['notinterested', 'notcontact', 'stop', 'fucking', 'unsubscribe'], $negativeWords)) > 0) {
+            unset($scores['pos']);
+            unset($scores['neu']);
+            unset($scores['pos_words']);
+            $scores['neu'] = 0;
+            $scores['pos'] = 0;
+        }
 
         if ((key($scores) === self::SENTIMENT_NEGATIVE)) {
             $scores['neg_words'] = array_unique($negativeWords);
